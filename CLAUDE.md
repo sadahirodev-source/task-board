@@ -2,7 +2,13 @@
 
 ## プロジェクト概要
 
-タスクボード (task-board) プロジェクト。
+タスクボード (task-board) プロジェクト。タスクの追加・完了・削除ができるシンプルな Web アプリ。
+
+## デプロイ先
+
+https://sadahirodev-source.github.io/task-board/
+
+`main` ブランチへのプッシュで GitHub Actions が自動ビルド & デプロイする。
 
 ## Git 運用ルール
 
@@ -38,10 +44,33 @@ git push origin <ブランチ名>
 - 不要なコード・デッドコードは残さず削除する。
 - セキュリティ: ユーザー入力・外部 API の境界でのみバリデーションを行う。
 
+## 技術スタック
+
+| 役割 | 技術 |
+|------|------|
+| UI ライブラリ | React 18 |
+| ビルドツール | Vite 6 |
+| スタイリング | Plain CSS (CSS Modules 不使用) |
+| 状態永続化 | localStorage |
+| CI/CD | GitHub Actions |
+| ホスティング | GitHub Pages |
+
+## コンポーネント命名規約
+
+- コンポーネントファイルは **PascalCase** (`App.jsx`, `TaskItem.jsx`)
+- 関数コンポーネントは **PascalCase** で定義する
+- CSS クラス名は **kebab-case** (`.task-item`, `.delete-btn`)
+- イベントハンドラは `handle` プレフィックス (`handleKeyDown`, `handleSubmit`)
+- state の setter 以外の内部関数は動詞で始める (`addTask`, `toggleTask`, `deleteTask`)
+
 ## 開発環境セットアップ
 
-（プロジェクト固有の手順をここに追記してください）
+```bash
+npm install
+npm run dev    # 開発サーバー起動 → http://localhost:5173
+npm run build  # 本番ビルド → dist/
+```
 
 ## テスト
 
-（テスト実行コマンドをここに追記してください）
+現時点でテストは未導入。
